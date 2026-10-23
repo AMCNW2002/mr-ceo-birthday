@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import './Greeting.css'
 
+const publicImages = `${import.meta.env.BASE_URL}images/`
+const companyLogo = `${publicImages}quick-solutions-logo.jpeg`
+const birthdayPortrait = `${publicImages}birthday-portrait.jpg`
+
 const birthdayMelody = [
   [392, 0.75], [392, 0.25], [440, 1], [392, 1], [523.25, 1], [493.88, 2],
   [392, 0.75], [392, 0.25], [440, 1], [392, 1], [587.33, 1], [523.25, 2],
@@ -161,7 +165,7 @@ function Greeting() {
     <main className="greeting">
       <div className="greeting-loader" role="status" aria-label="Preparing your birthday greeting">
         <span className="loader-logo">
-          <img src="/images/quick-solutions-logo.jpeg" alt="" />
+          <img src={companyLogo} alt="" />
         </span>
         <span className="loader-caption">A special wish is on its way</span>
         <span className="loader-progress" aria-hidden="true"><span /></span>
@@ -172,12 +176,12 @@ function Greeting() {
             <span className="brand-logo-cube" aria-hidden="true">
               <img
                 className="brand-logo brand-logo-front"
-                src="/images/quick-solutions-logo.jpeg"
+                src={companyLogo}
                 alt=""
               />
               <img
                 className="brand-logo brand-logo-back"
-                src="/images/quick-solutions-logo.jpeg"
+                src={companyLogo}
                 alt=""
               />
             </span>
@@ -234,7 +238,7 @@ function Greeting() {
           <div className="portrait-wrap">
             <img
               className="birthday-portrait"
-              src="/images/birthday-portrait.jpg"
+              src={birthdayPortrait}
               alt="Our birthday honoree in a blue suit"
             />
             <div className="portrait-shade" aria-hidden="true" />
