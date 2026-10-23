@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import birthdayPortrait from './assets/chathushka.jpg'
+import companyLogo from './assets/logo.jpeg'
 import './Greeting.css'
-
-const publicImages = `${import.meta.env.BASE_URL}images/`
-const companyLogo = `${publicImages}quick-solutions-logo.jpeg`
-const birthdayPortrait = `${publicImages}birthday-portrait.jpg`
 
 const birthdayMelody = [
   [392, 0.75], [392, 0.25], [440, 1], [392, 1], [523.25, 1], [493.88, 2],
