@@ -1,0 +1,625 @@
+.greeting {
+  min-height: 100vh;
+  padding: clamp(18px, 4vw, 56px);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(25 54 76 / 34%), transparent 52%),
+    #05080d;
+}
+
+.greeting-card {
+  position: relative;
+  display: flex;
+  width: min(100%, 1280px);
+  min-height: min(900px, calc(100svh - 2 * clamp(18px, 4vw, 56px)));
+  flex-direction: column;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgb(222 166 83 / 43%);
+  background:
+    radial-gradient(ellipse at 69% 48%, rgb(24 45 58 / 36%), transparent 45%),
+    #080d14;
+  box-shadow: 0 26px 100px rgb(0 0 0 / 42%);
+}
+
+.greeting-card::before,
+.greeting-card::after {
+  position: absolute;
+  z-index: 3;
+  width: 104px;
+  height: 104px;
+  content: '';
+  pointer-events: none;
+}
+
+.greeting-card::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid #f0ad4c;
+  border-left: 1px solid #f0ad4c;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.greeting-card::after {
+  right: 0;
+  bottom: 0;
+  border-right: 1px solid #f0ad4c;
+  border-bottom: 1px solid #f0ad4c;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.greeting-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: 120px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 7%;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  perspective: 700px;
+  color: #f0ede7;
+  text-decoration: none;
+}
+
+.brand-logo-cube {
+  position: relative;
+  display: block;
+  width: 74px;
+  height: 84px;
+  flex: 0 0 auto;
+  padding: 3px;
+  border: 1px solid #77b9ed;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #f8fcff, #3d8fd2 48%, #d9efff);
+  box-shadow:
+    0 5px 12px rgb(0 0 0 / 42%),
+    0 0 16px rgb(66 151 222 / 24%),
+    inset 0 0 0 1px rgb(241 249 255 / 65%);
+  transform-style: preserve-3d;
+  animation: logo-rotation 10s linear infinite;
+}
+
+.brand-logo-cube::after {
+  position: absolute;
+  z-index: -1;
+  inset: 2px;
+  border: 1px solid #246baa;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #469bdb, #164d83);
+  content: '';
+  transform: translateZ(-4px);
+}
+
+.brand-logo {
+  position: absolute;
+  inset: 3px;
+  display: block;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  border: 1px solid rgb(255 255 255 / 90%);
+  border-radius: 2px;
+  background: #fffefe;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+
+.brand-logo-front {
+  transform: translateZ(4px);
+}
+
+.brand-logo-back {
+  transform: rotateY(180deg) translateZ(4px);
+}
+
+@keyframes logo-rotation {
+  from {
+    transform: rotateY(0deg) rotateX(4deg);
+  }
+
+  50% {
+    transform: rotateY(180deg) rotateX(-4deg);
+  }
+
+  to {
+    transform: rotateY(360deg) rotateX(4deg);
+  }
+}
+
+.brand-copy {
+  display: grid;
+  gap: 5px;
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.8vw, 23px);
+  font-weight: 500;
+  letter-spacing: 0.035em;
+}
+
+.brand-copy small {
+  padding-top: 4px;
+  color: #eed4a7;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+.header-motto {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  color: #efbc69;
+  font-size: 9px;
+  letter-spacing: 0.19em;
+  text-align: right;
+}
+
+.header-motto i {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  margin: 0 9px 2px;
+  border-radius: 50%;
+  background: #e8ad54;
+}
+
+.header-motto span {
+  color: #f5d69d;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+}
+
+.birthday-content {
+  position: relative;
+  display: flex;
+  min-height: 645px;
+  flex: 1;
+  align-items: center;
+  padding: 42px 7% 84px;
+}
+
+.birthday-message {
+  position: relative;
+  z-index: 2;
+  width: 49%;
+  padding: 0 0 20px 1%;
+}
+
+.pretitle,
+.leader-title,
+.greeting-footer > p:first-child {
+  color: #eee9e2;
+  font-family: var(--serif);
+  letter-spacing: 0.2em;
+}
+
+.pretitle {
+  margin: 0 0 8px;
+  font-size: clamp(14px, 1.7vw, 20px);
+}
+
+.birthday-message h1 {
+  display: grid;
+  margin: 0 0 8px -5px;
+  color: #f2ad55;
+  font-family: var(--script), cursive;
+  font-size: clamp(76px, 10.2vw, 132px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.78;
+  text-shadow: 0 5px 34px rgb(232 157 64 / 10%);
+  animation: birthday-glow 3.2s ease-in-out 1.35s infinite alternate;
+}
+
+.birthday-message h1 span {
+  opacity: 0;
+  animation: birthday-word-reveal 1.1s cubic-bezier(0.2, 0.75, 0.25, 1) forwards;
+}
+
+.birthday-message h1 span:first-child {
+  animation-delay: 0.25s;
+}
+
+.birthday-message h1 span:last-child {
+  animation-delay: 0.62s;
+}
+
+@keyframes birthday-word-reveal {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes birthday-glow {
+  from {
+    text-shadow: 0 5px 28px rgb(232 157 64 / 12%);
+  }
+
+  to {
+    text-shadow: 0 5px 42px rgb(255 183 86 / 36%);
+  }
+}
+
+.birthday-message h1 span:last-child {
+  margin-top: 13px;
+}
+
+.leader-title {
+  margin: 26px 0 17px;
+  font-size: clamp(12px, 1.55vw, 19px);
+  letter-spacing: 0.17em;
+}
+
+.gold-rule {
+  display: block;
+  width: 49px;
+  height: 2px;
+  margin-bottom: 20px;
+  background: #e7a84e;
+}
+
+.wish-copy {
+  max-width: 400px;
+  color: #dfdcd7;
+  font-size: clamp(13px, 1.3vw, 16px);
+  font-weight: 300;
+  line-height: 1.52;
+}
+
+.wish-copy p {
+  margin: 0 0 16px;
+}
+
+.signoff {
+  display: grid;
+  gap: 3px;
+  margin: 24px 0 0;
+  color: #f2ac53;
+  font-family: var(--script), cursive;
+  font-size: clamp(25px, 3vw, 37px);
+  line-height: 1.05;
+  transform: rotate(-3deg);
+  transform-origin: left center;
+}
+
+.signoff span {
+  font-size: 0.94em;
+}
+
+.signoff b {
+  margin-left: 5px;
+  font-family: var(--sans);
+  font-size: 0.64em;
+}
+
+.signature-swoosh {
+  display: block;
+  width: 103px;
+  height: 13px;
+  margin: 3px 0 0 22px;
+  border-top: 1px solid #eca949;
+  border-radius: 50%;
+  transform: rotate(-12deg);
+}
+
+.portrait-wrap {
+  position: absolute;
+  top: -4px;
+  right: -1%;
+  bottom: 0;
+  width: 61%;
+  overflow: hidden;
+}
+
+.birthday-portrait {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 52% 29%;
+}
+
+.portrait-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #080d14 0%, rgb(8 13 20 / 79%) 8%, transparent 45%),
+    linear-gradient(0deg, #080d14 0%, transparent 19%, transparent 84%, #080d14 100%);
+}
+
+.greeting-footer {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  min-height: 192px;
+  align-content: center;
+  justify-items: center;
+  gap: 7px;
+  padding: 22px 16px 34px;
+  border-top: 1px solid rgb(234 176 83 / 68%);
+  background: linear-gradient(180deg, rgb(4 9 15 / 90%), #070b11 43%);
+  box-shadow: 0 -7px 24px rgb(236 174 76 / 15%);
+  text-align: center;
+}
+
+.greeting-footer > p:first-child {
+  margin: 0;
+  font-size: 15px;
+}
+
+.footer-happy {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  color: #f2ad55;
+  font-family: var(--script), cursive;
+  font-size: clamp(38px, 5vw, 60px);
+  line-height: 1;
+  animation:
+    birthday-word-reveal 1.05s cubic-bezier(0.2, 0.75, 0.25, 1) 0.95s both,
+    birthday-glow 3.2s ease-in-out 2s infinite alternate;
+}
+
+.footer-happy::after {
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background: linear-gradient(
+    110deg,
+    transparent 38%,
+    rgb(255 244 213 / 0.2) 45%,
+    #fff2ce 50%,
+    #ffd38b 54%,
+    transparent 62%
+  );
+  background-position: 100% 0;
+  background-size: 240% 100%;
+  background-clip: text;
+  content: attr(data-shine-text);
+  pointer-events: none;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  animation: footer-shine 2s linear infinite;
+}
+
+@keyframes footer-shine {
+  to {
+    background-position: 0 0;
+  }
+}
+
+.footer-blessing {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-top: 5px;
+  color: #e3dfd9;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+}
+
+.footer-blessing span {
+  width: 43px;
+  height: 1px;
+  background: #e7a84e;
+}
+
+.creator-credit {
+  margin: 9px 0 0;
+  color: #e7a84e;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+}
+
+.corner {
+  position: absolute;
+  z-index: 4;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.corner-top {
+  top: 0;
+  right: 0;
+  border-top: 1px solid #e9ad56;
+  border-right: 1px solid #e9ad56;
+}
+
+.corner-bottom {
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px solid #e9ad56;
+  border-left: 1px solid #e9ad56;
+}
+
+@media (min-width: 1500px) {
+  .birthday-content {
+    min-height: 710px;
+  }
+}
+
+@media (max-width: 760px) {
+  .greeting {
+    padding: 12px;
+  }
+
+  .greeting-card {
+    min-height: calc(100svh - 24px);
+  }
+
+  .greeting-header {
+    min-height: 91px;
+    padding: 12px 6%;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-logo-cube {
+    width: 43px;
+    height: 43px;
+  }
+
+  .brand-copy {
+    gap: 4px;
+    font-size: clamp(12px, 3.2vw, 16px);
+    letter-spacing: 0.015em;
+  }
+
+  .brand-copy small {
+    font-size: 5px;
+    letter-spacing: 0.11em;
+  }
+
+  .header-motto {
+    font-size: 7px;
+    letter-spacing: 0.12em;
+  }
+
+  .header-motto i {
+    margin-right: 4px;
+    margin-left: 4px;
+  }
+
+  .header-motto span {
+    font-size: 6px;
+  }
+
+  .birthday-content {
+    min-height: 730px;
+    align-items: flex-end;
+    padding: 300px 7% 48px;
+  }
+
+  .portrait-wrap {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .birthday-portrait {
+    object-position: 50% 24%;
+  }
+
+  .portrait-shade {
+    background:
+      linear-gradient(0deg, #080d14 3%, rgb(8 13 20 / 94%) 23%, rgb(8 13 20 / 62%) 49%, transparent 76%),
+      linear-gradient(90deg, rgb(8 13 20 / 35%), transparent 90%),
+      linear-gradient(0deg, transparent 75%, #080d14 100%);
+  }
+
+  .birthday-message {
+    width: min(100%, 500px);
+    padding: 0;
+  }
+
+  .birthday-message h1 {
+    font-size: clamp(72px, 14vw, 108px);
+  }
+
+  .wish-copy {
+    max-width: 400px;
+    font-size: 14px;
+  }
+
+  .signoff {
+    margin-top: 19px;
+  }
+
+  .greeting-footer {
+    min-height: 170px;
+    padding: 18px 12px 28px;
+  }
+}
+
+@media (max-width: 420px) {
+  .greeting-header {
+    min-height: 84px;
+  }
+
+  .header-motto {
+    max-width: 124px;
+    font-size: 6px;
+  }
+
+  .header-motto span {
+    font-size: 5px;
+  }
+
+  .birthday-content {
+    min-height: 695px;
+    padding-bottom: 42px;
+  }
+
+  .pretitle {
+    font-size: 13px;
+  }
+
+  .birthday-message h1 {
+    font-size: clamp(67px, 16vw, 82px);
+  }
+
+  .leader-title {
+    margin-top: 22px;
+    font-size: 11px;
+  }
+
+  .wish-copy {
+    font-size: 13px;
+  }
+
+  .greeting-footer > p:first-child {
+    font-size: 13px;
+  }
+
+  .footer-happy {
+    font-size: 43px;
+  }
+
+  .footer-blessing {
+    gap: 10px;
+    font-size: 9px;
+  }
+
+  .creator-credit {
+    margin-top: 7px;
+    font-size: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .birthday-message h1,
+  .birthday-message h1 span,
+  .footer-happy,
+  .footer-happy::after,
+  .brand-logo-cube {
+    opacity: 1;
+    animation: none;
+    filter: none;
+    transform: none;
+    text-shadow: 0 5px 34px rgb(232 157 64 / 10%);
+  }
+}
