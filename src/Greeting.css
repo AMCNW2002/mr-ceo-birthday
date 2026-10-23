@@ -1,9 +1,88 @@
 .greeting {
+  position: relative;
   min-height: 100vh;
   padding: clamp(18px, 4vw, 56px);
   background:
     radial-gradient(ellipse at 50% 0%, rgb(25 54 76 / 34%), transparent 52%),
     #05080d;
+}
+
+.greeting-loader {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgb(25 54 76 / 42%), transparent 48%),
+    #05080d;
+  animation: loader-dismiss 0.45s ease-in 0.95s forwards;
+}
+
+.loader-logo {
+  display: grid;
+  width: 74px;
+  height: 74px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgb(119 185 237 / 80%);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 30px rgb(66 151 222 / 24%);
+  animation: loader-logo-pulse 1s ease-in-out infinite alternate;
+}
+
+.loader-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.loader-caption {
+  color: #e8d7b8;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.loader-progress {
+  width: 120px;
+  height: 2px;
+  overflow: hidden;
+  background: rgb(255 255 255 / 12%);
+}
+
+.loader-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #347fc0, #f2c77d, #347fc0);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: loader-progress-fill 1.35s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes loader-dismiss {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes loader-logo-pulse {
+  to {
+    box-shadow: 0 0 42px rgb(111 183 237 / 50%);
+    transform: scale(1.045);
+  }
+}
+
+@keyframes loader-progress-fill {
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .greeting-card {
@@ -19,6 +98,21 @@
     radial-gradient(ellipse at 69% 48%, rgb(24 45 58 / 36%), transparent 45%),
     #080d14;
   box-shadow: 0 26px 100px rgb(0 0 0 / 42%);
+  animation: greeting-arrive 0.9s cubic-bezier(0.2, 0.75, 0.25, 1) 0.65s both;
+}
+
+@keyframes greeting-arrive {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
 }
 
 .greeting-card::before,
@@ -210,12 +304,39 @@
   letter-spacing: -0.055em;
   line-height: 0.78;
   text-shadow: 0 5px 34px rgb(232 157 64 / 10%);
-  animation: birthday-glow 3.2s ease-in-out 1.35s infinite alternate;
+  transform-style: preserve-3d;
+  animation:
+    birthday-glow 3.2s ease-in-out 1.35s infinite alternate,
+    birthday-tilt 5s ease-in-out 1.7s infinite alternate;
 }
 
 .birthday-message h1 span {
+  position: relative;
+  display: inline-block;
   opacity: 0;
   animation: birthday-word-reveal 1.1s cubic-bezier(0.2, 0.75, 0.25, 1) forwards;
+}
+
+.birthday-message h1 span::after {
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background: linear-gradient(
+    110deg,
+    transparent 38%,
+    rgb(255 244 213 / 0.2) 45%,
+    #fff2ce 50%,
+    #ffd38b 54%,
+    transparent 62%
+  );
+  background-position: 100% 0;
+  background-size: 240% 100%;
+  background-clip: text;
+  content: attr(data-shine-text);
+  pointer-events: none;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  animation: birthday-text-shine 2.8s linear 1.4s infinite;
 }
 
 .birthday-message h1 span:first-child {
@@ -247,6 +368,22 @@
 
   to {
     text-shadow: 0 5px 42px rgb(255 183 86 / 36%);
+  }
+}
+
+@keyframes birthday-text-shine {
+  to {
+    background-position: 0 0;
+  }
+}
+
+@keyframes birthday-tilt {
+  from {
+    transform: perspective(900px) rotateY(-5deg) rotateZ(-0.8deg);
+  }
+
+  to {
+    transform: perspective(900px) rotateY(5deg) rotateZ(0.8deg);
   }
 }
 
@@ -529,6 +666,7 @@
 
   .birthday-message h1 {
     font-size: clamp(72px, 14vw, 108px);
+    animation-duration: 3.2s, 6s;
   }
 
   .wish-copy {
@@ -571,6 +709,7 @@
 
   .birthday-message h1 {
     font-size: clamp(67px, 16vw, 82px);
+    animation-duration: 3.2s, 6s;
   }
 
   .leader-title {
@@ -611,8 +750,17 @@
     transition-duration: 0.01ms !important;
   }
 
+  .greeting-loader {
+    display: none;
+  }
+
+  .greeting-card {
+    animation: none;
+  }
+
   .birthday-message h1,
   .birthday-message h1 span,
+  .birthday-message h1 span::after,
   .footer-happy,
   .footer-happy::after,
   .brand-logo-cube {

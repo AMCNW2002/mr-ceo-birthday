@@ -3,6 +3,13 @@ import './Greeting.css'
 function Greeting() {
   return (
     <main className="greeting">
+      <div className="greeting-loader" role="status" aria-label="Preparing your birthday greeting">
+        <span className="loader-logo">
+          <img src="/images/quick-solutions-logo.jpeg" alt="" />
+        </span>
+        <span className="loader-caption">A special wish is on its way</span>
+        <span className="loader-progress" aria-hidden="true"><span /></span>
+      </div>
       <article className="greeting-card" aria-labelledby="birthday-title">
         <header className="greeting-header">
           <a className="brand" href="#home" aria-label="Quick Solutions International home">
@@ -32,8 +39,8 @@ function Greeting() {
 
             <br/><br/><p className="pretitle">WISHING YOU A VERY</p><br/><br/><br/><br/>
             <h1 id="birthday-title">
-              <span>Happy</span>
-              <span>Birthday</span>
+              <span data-shine-text="Happy">Happy</span>
+              <span data-shine-text="Birthday">Birthday</span>
             </h1>
             <p className="leader-title">OUR VISIONARY LEADER</p>
             <span className="gold-rule" aria-hidden="true" />
